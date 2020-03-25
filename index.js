@@ -100,6 +100,7 @@ Car.prototype.fill = function(gallons){
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
+Baby.prototype = Object.create(Person.prototype);
 
 function Baby(name, age, favoriteToy) {
   Person.call(this);
@@ -118,10 +119,14 @@ Baby.prototype.play = function() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1.
-  2.
-  3.
-  4.
+  1.Implicit Binding - This is where you can have a function inside of an object
+  and you when the function is invoked, you look to the left to see what object is
+  getting invoked.
+  2.Explicit Binding - This is where you can use call, apply and bind and reference
+  a function with the .this from the global scope.
+  3.New Binding - This is when you build a function, and can reference that function with
+  a key work of new to replace that functions parameters.
+  4.Window Binding - This is when the function defaults to the window mode.
 */
 
 
