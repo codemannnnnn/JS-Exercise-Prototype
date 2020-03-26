@@ -39,9 +39,29 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+
+function Person(name, age) {
+
+  this.name = name;
+  this.age = age;
+
+  stomach = this.stomach = [];
+
+  Person.prototype.eat = function(someFood) {
+    if (this.stomach.length < 10)
+
+      this.stomach.push(someFood);
+  };
+  Person.prototype.poop = function() {
+    this.stomach = [];
+  };
+  Person.prototype.toString = function() {
+    return this.name + this.age;
+  };
 
 }
+
+
 
 /*
   TASK 2
@@ -57,9 +77,20 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+  }
+Car.prototype.fill = function(gallons){
+  this.tank += gallons;
+};
 
-}
+
+
+
+
 
 /*
   TASK 3
@@ -68,18 +99,34 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+
+Baby.prototype = Object.create(Person.prototype);
+
+function Baby(name, age, favoriteToy) {
+  Person.call(this);
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
+
 
 }
+Baby.prototype.play = function() {
+  return `Playing with ${this.favoriteToy}`;
+};
 
-/* 
+
+/*
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1.Implicit Binding - This is where you can have a function inside of an object
+  and you when the function is invoked, you look to the left to see what object is
+  getting invoked.
+  2.Explicit Binding - This is where you can use call, apply and bind and reference
+  a function with the .this from the global scope.
+  3.New Binding - This is when you build a function, and can reference that function with
+  a key work of new to replace that functions parameters.
+  4.Window Binding - This is when the function defaults to the window mode.
 */
 
 
